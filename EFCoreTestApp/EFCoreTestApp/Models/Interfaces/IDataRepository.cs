@@ -7,6 +7,7 @@ namespace EFCoreTestApp.Models.Interfaces
     {
         Product GetProduct(long id);
         IEnumerable<Product> GetAllProducts();
+        IEnumerable<Product> GetFilterProducts(string category=null, decimal? price = null);
         void CreateProduct(Product newProduct);
         void UpadteProduct(Product changeProduct);
         void DeleteProduct(long id);

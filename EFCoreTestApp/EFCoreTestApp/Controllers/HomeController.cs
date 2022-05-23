@@ -14,9 +14,12 @@ namespace EFCoreTestApp.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string category = null, decimal? price = null)
         {
-            return View(_repo.GetAllProducts());
+            var products = _repo.GetFilterProducts(category, price);
+            ViewBag.Category = category;
+            ViewBag.Price = price;
+            return View(products);
         }
 
         public IActionResult Create()

@@ -17,7 +17,9 @@ namespace EFCoreTestApp.Models
 
         public void CreateProduct(Product newProduct)
         {
-            System.Console.WriteLine($"Create Product - {JsonConvert.SerializeObject(newProduct)}");
+            newProduct.Id = 0;
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
         }
 
         public void DeleteProduct(long id)
@@ -27,19 +29,34 @@ namespace EFCoreTestApp.Models
 
         public IEnumerable<Product> GetAllProducts()
         {
-            System.Console.WriteLine("GetAllProducts");
             return _context.Products;
+        }
+
+        public IEnumerable<Product> GetFilterProducts(string category = null, decimal? price = null)
+        {
+            IQueryable<Product> data = _context.Products;
+
+            if(category != null)
+            {
+                data = data.Where(p => p.Category == category);
+            }
+            if(price != null)
+            {
+                data = data.Where(p => p.Price >= price);
+            }
+
+            return data;
         }
 
         public Product GetProduct(long id)
         {
-            System.Console.WriteLine("GetProduct");
-            return new Product();
+            return _context.Products.Find(id);
         }
 
         public void UpadteProduct(Product changeProduct)
         {
-            System.Console.WriteLine($"Create Product - {JsonConvert.SerializeObject(changeProduct)}");
+            _context.Products.Update(changeProduct);
+            _context.SaveChanges();
         }
     }
 }

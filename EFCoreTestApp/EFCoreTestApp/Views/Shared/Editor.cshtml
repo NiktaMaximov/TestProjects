@@ -4,8 +4,7 @@
     Layout = "_Layout";
 }
 
-<form asp-action="@(ViewBag.CreateMode ? "Create" : "Editor")" method="post">
-
+<form asp-action="@(ViewBag.CreateMode ? "Create" : "Edit")" method="post">
     <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -25,5 +24,4 @@
         <button class="btn btn-primary" type="submit">Save</button>
         <a asp-action="Index" class="btn btn-secondary">Cancel</a>
     </div>
-
 </form>
