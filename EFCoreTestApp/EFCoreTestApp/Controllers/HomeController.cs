@@ -41,9 +41,9 @@ namespace EFCoreTestApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(Product product, Product original)
         {
-            _repo.UpadteProduct(product);
+            _repo.UpadteProduct(product, original);
             return RedirectToAction(nameof(Index));
         }
 

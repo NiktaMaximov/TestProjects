@@ -9,7 +9,7 @@ namespace EFCoreTestApp.Models.Interfaces
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetFilterProducts(string category=null, decimal? price = null);
         void CreateProduct(Product newProduct);
-        void UpadteProduct(Product changeProduct);
+        void UpadteProduct(Product changeProduct, Product originalProdut = null);
         void DeleteProduct(long id);
     }
 }

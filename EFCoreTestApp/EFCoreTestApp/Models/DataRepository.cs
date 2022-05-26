@@ -1,5 +1,6 @@
 ﻿using EFCoreTestApp.Dal;
 using EFCoreTestApp.Models.Interfaces;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,9 @@ namespace EFCoreTestApp.Models
 
         public void DeleteProduct(long id)
         {
-            System.Console.WriteLine($"Delete Product - {id}");
+            Product p = _context.Products.Find(id);
+            _context.Products.Remove(p);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -53,9 +56,25 @@ namespace EFCoreTestApp.Models
             return _context.Products.Find(id);
         }
 
-        public void UpadteProduct(Product changeProduct)
+        public void UpadteProduct(Product changeProduct, Product originalProduct = null)
         {
-            _context.Products.Update(changeProduct);
+            if(originalProduct == null)
+                originalProduct = _context.Products.Find(changeProduct.Id);
+            else
+                _context.Products.Attach(originalProduct);
+
+            originalProduct.Name = changeProduct.Name;
+            originalProduct.Category = changeProduct.Category;
+            originalProduct.Price = changeProduct.Price;
+
+            EntityEntry entity = _context.Entry(originalProduct);
+            System.Console.WriteLine($"Entry state {entity.State}");
+
+            foreach (var item in new string[] { "Name", "Category", "Price" })
+            {
+                System.Console.WriteLine($"{item} OLD: {entity.OriginalValues[item]} NEW: {entity.CurrentValues[item]}");
+            }
+
             _context.SaveChanges();
         }
     }
