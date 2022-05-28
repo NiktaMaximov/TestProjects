@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EFCoreTestApp.Migrations
+namespace EFCoreTestApp.Migrations.EFCustomer
 {
-    [DbContext(typeof(EFDatabaseContext))]
-    partial class EFDatabaseContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(EFCustomerContext))]
+    partial class EFCustomerContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -18,31 +18,25 @@ namespace EFCoreTestApp.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EFCoreTestApp.Models.Product", b =>
+            modelBuilder.Entity("EFCoreTestApp.Models.Customer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category")
+                    b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Colors")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("InStock")
-                        .HasColumnType("bit");
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Customers");
                 });
 #pragma warning restore 612, 618
         }

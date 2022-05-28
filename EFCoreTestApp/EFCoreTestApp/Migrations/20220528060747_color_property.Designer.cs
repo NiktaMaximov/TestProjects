@@ -3,14 +3,16 @@ using EFCoreTestApp.Dal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCoreTestApp.Migrations
 {
     [DbContext(typeof(EFDatabaseContext))]
-    partial class EFDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220528060747_color_property")]
+    partial class color_property
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +32,6 @@ namespace EFCoreTestApp.Migrations
 
                     b.Property<int>("Colors")
                         .HasColumnType("int");
-
-                    b.Property<bool>("InStock")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

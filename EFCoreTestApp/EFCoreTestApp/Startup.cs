@@ -27,11 +27,15 @@ namespace EFCoreTestApp
         public void ConfigureServices(IServiceCollection services)
         {
             string connectionsString = Configuration["ConnectionStrings:DefaultConnection"];
+            string customerConnectionsString = Configuration["ConnectionStrings:CustomerConnection"];
             services.AddDbContext<EFDatabaseContext>(a => a.UseSqlServer(connectionsString));
+            services.AddDbContext<EFCustomerContext>(a => a.UseSqlServer(customerConnectionsString));
 
             services.AddControllersWithViews();
 
             services.AddTransient<IDataRepository, DataRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<MigrationsManager>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
