@@ -38,11 +38,14 @@ namespace EFCoreTestApp
             services.AddTransient<MigrationsManager>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, EFDatabaseContext prodCtx, EFCustomerContext custCtx)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // Данные методы используются для автоматического заполнения БД данными (БД должна быть пустой)
+                //SeedData.Seed(prodCtx);
+                //SeedData.Seed(custCtx);
             }
 
             app.UseStatusCodePages();

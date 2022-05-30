@@ -14,11 +14,12 @@ namespace EFCoreTestApp.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index(string category = null, decimal? price = null)
+        public IActionResult Index(string category = null, decimal? price = null, bool includeRelated = true)
         {
-            var products = _repo.GetFilterProducts(category, price);
+            var products = _repo.GetFilterProducts(category, price, includeRelated);
             ViewBag.Category = category;
             ViewBag.Price = price;
+            ViewBag.IncludeRelated = includeRelated;
             return View(products);
         }
 

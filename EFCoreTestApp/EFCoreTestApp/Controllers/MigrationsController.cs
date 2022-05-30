@@ -27,5 +27,23 @@ namespace EFCoreTestApp.Controllers
 
             return RedirectToAction(nameof(Index), new { context = context });
         }
+
+        [HttpPost]
+        public IActionResult Seed(string context)
+        {
+            _manager.ContextName = context;
+            SeedData.Seed(_manager.Context);
+
+            return RedirectToAction(nameof(Index), new { context = context });
+        }
+
+        [HttpPost]
+        public IActionResult Clear(string context)
+        {
+            _manager.ContextName = context;
+            SeedData.ClearData(_manager.Context);
+
+            return RedirectToAction(nameof(Index), new { context = context });
+        }
     }
 }

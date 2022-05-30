@@ -1,5 +1,6 @@
 ﻿using EFCoreTestApp.Dal;
 using EFCoreTestApp.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -32,10 +33,11 @@ namespace EFCoreTestApp.Models
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return _context.Products;
+            return _context.Products.Include(p => p.Supplier);
+            //return _context.Products;
         }
 
-        public IEnumerable<Product> GetFilterProducts(string category = null, decimal? price = null)
+        public IEnumerable<Product> GetFilterProducts(string category = null, decimal? price = null, bool includeRelated = true)
         {
             IQueryable<Product> data = _context.Products;
 
@@ -47,13 +49,18 @@ namespace EFCoreTestApp.Models
             {
                 data = data.Where(p => p.Price >= price);
             }
+            if(includeRelated)
+            {
+                data = data.Include(p => p.Supplier);
+            }
 
             return data;
         }
 
         public Product GetProduct(long id)
         {
-            return _context.Products.Find(id);
+            //return _context.Products.Find(id);
+            return _context.Products.Include(p => p.Supplier).First(p => p.Id == id);
         }
 
         public void UpadteProduct(Product changeProduct, Product originalProduct = null)
