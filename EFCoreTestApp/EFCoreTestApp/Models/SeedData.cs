@@ -40,13 +40,31 @@ namespace EFCoreTestApp.Models
             dbContext.SaveChanges();
         }
 
-        private static Product[] Products =
+        private static Product[] Products
         {
-            new Product {Name = "Car-1", Category = "SportCars", Price = 10, Colors = Colors.Green, InStock = true},
-            new Product {Name = "Car-2", Category = "SportCars", Price = 15, Colors = Colors.Red, InStock = true},
-            new Product {Name = "Car-3", Category = "Cars", Price = 5, Colors = Colors.Blue, InStock = false},
-            new Product {Name = "Car-4", Category = "cars", Price = 7, Colors = Colors.Red, InStock = true}
-        };
+            get
+            {
+                Product[] products = new Product[]
+                {
+                    new Product { Name = "Car-1", Category = "SportCars", Price = 10, Colors = Colors.Green, InStock = true },
+                    new Product { Name = "Car-2", Category = "SportCars", Price = 15, Colors = Colors.Red, InStock = true },
+                    new Product { Name = "Car-3", Category = "Cars", Price = 5, Colors = Colors.Blue, InStock = false },
+                    new Product { Name = "Car-4", Category = "Cars", Price = 7, Colors = Colors.Red, InStock = true }
+                };
+
+                Supplier s1 = new Supplier { Name = "Name-1", City = "City-1", State = "State-1" };
+                Supplier s2 = new Supplier { Name = "name-2", City = "City-2", State = "State-2" };
+
+                products.First().Supplier = s1;
+
+                foreach (var item in products.Where(p => p.Category == "SportCars"))
+                {
+                    item.Supplier = s2;
+                }
+
+                return products;
+            }
+        }
 
         private static Customer[] Customers =
         {

@@ -44,8 +44,8 @@ namespace EFCoreTestApp
             {
                 app.UseDeveloperExceptionPage();
                 // Данные методы используются для автоматического заполнения БД данными (БД должна быть пустой)
-                //SeedData.Seed(prodCtx);
-                //SeedData.Seed(custCtx);
+                SeedData.Seed(prodCtx);
+                SeedData.Seed(custCtx);
             }
 
             app.UseStatusCodePages();
