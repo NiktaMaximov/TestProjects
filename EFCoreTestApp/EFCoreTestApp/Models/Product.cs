@@ -14,6 +14,7 @@
         public decimal Price { get; set; }
         public Colors Colors { get; set; }
         public bool InStock { get; set; }
+        public long SupplierId { get; set; }
         public Supplier Supplier { get; set; }
     }
 }

@@ -26,8 +26,17 @@ namespace EFCoreTestApp.Models
 
         public void DeleteProduct(long id)
         {
-            Product p = _context.Products.Find(id);
+            //Product p = _context.Products.Find(id);
+            //_context.Products.Remove(p);
+            //_context.SaveChanges();
+
+            Product p = this.GetProduct(id);
             _context.Products.Remove(p);
+
+            if(p.Supplier != null)
+            {
+                _context.Remove<Supplier>(p.Supplier);
+            }
             _context.SaveChanges();
         }
 
@@ -73,6 +82,10 @@ namespace EFCoreTestApp.Models
             originalProduct.Name = changeProduct.Name;
             originalProduct.Category = changeProduct.Category;
             originalProduct.Price = changeProduct.Price;
+
+            originalProduct.Supplier.Name = changeProduct.Supplier.Name;
+            originalProduct.Supplier.City = changeProduct.Supplier.City;
+            originalProduct.Supplier.State = changeProduct.Supplier.State;
 
             EntityEntry entity = _context.Entry(originalProduct);
             System.Console.WriteLine($"Entry state {entity.State}");

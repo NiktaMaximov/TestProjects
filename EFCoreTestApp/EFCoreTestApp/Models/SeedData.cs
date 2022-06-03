@@ -52,14 +52,30 @@ namespace EFCoreTestApp.Models
                     new Product { Name = "Car-4", Category = "Cars", Price = 7, Colors = Colors.Red, InStock = true }
                 };
 
+                ConcatLocation hq = new ConcatLocation { LocationName = "LocationName-1", Address = "Address-1" };
+
+                ConcatDetails bob = new ConcatDetails { Name = "Bob", Phone = "799-999-999", Location = hq };
+
+                Supplier acme = new Supplier { Name = "Name-0", City = "City-0", State = "State-0", Concat = bob };
+
                 Supplier s1 = new Supplier { Name = "Name-1", City = "City-1", State = "State-1" };
-                Supplier s2 = new Supplier { Name = "name-2", City = "City-2", State = "State-2" };
+                Supplier s2 = new Supplier { Name = "Name-2", City = "City-2", State = "State-2" };
 
-                products.First().Supplier = s1;
+                //products.First().Supplier = s1;
 
-                foreach (var item in products.Where(p => p.Category == "SportCars"))
+                //foreach (var item in products.Where(p => p.Category == "SportCars"))
+                //{
+                //    item.Supplier = s2;
+                //}
+
+                foreach(Product p in products)
                 {
-                    item.Supplier = s2;
+                    if (p == products[0])
+                        p.Supplier = s1;
+                    else if (p.Category == "SportCars")
+                        p.Supplier = s2;
+                    else
+                        p.Supplier = acme;
                 }
 
                 return products;

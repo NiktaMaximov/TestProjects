@@ -1,5 +1,10 @@
 ﻿@model EFCoreTestApp.Models.Product
 
+    <input name="original.Id" value="@Model.Supplier?.ID" type="hidden" />
+    <input name="original.Name" value="@Model.Supplier?.Name" type="hidden" />
+    <input name="original.City" value="@Model.Supplier?.City" type="hidden" />
+    <input name="Original.State" value="@Model.Supplier?.State" type="hidden" />
+
 <input type="hidden" asp-for="Supplier.ID" />
 <div class="form-group">
     <label asp-for="Supplier.Name"></label>
