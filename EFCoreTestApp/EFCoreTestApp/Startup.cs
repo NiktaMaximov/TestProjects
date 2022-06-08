@@ -36,6 +36,7 @@ namespace EFCoreTestApp
             services.AddTransient<IDataRepository, DataRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<MigrationsManager>();
+            services.AddTransient<ISupplierRepository, SupplierRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, EFDatabaseContext prodCtx, EFCustomerContext custCtx)

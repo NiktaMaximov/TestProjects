@@ -18,3 +18,21 @@
     <label asp-for="Supplier.State"></label>
     <input asp-for="Supplier.State" class="form-control" />
 </div>
+
+@if(Model.Supplier?.Concat != null)
+{
+    <div class="form-group">
+        <label asp-for="Supplier.Concat.Name"></label>
+        <input asp-for="Supplier.Concat.Name" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Supplier.Concat.Phone"></label>
+        <input asp-for="Supplier.Concat.Phone" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Supplier.Concat.Location.LocationName"></label>
+        <input asp-for="Supplier.Concat.Location.LocationName" class="form-control" readonly />
+    </div>
+}

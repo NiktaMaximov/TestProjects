@@ -69,7 +69,9 @@ namespace EFCoreTestApp.Models
         public Product GetProduct(long id)
         {
             //return _context.Products.Find(id);
-            return _context.Products.Include(p => p.Supplier).First(p => p.Id == id);
+            return _context.Products.Include(p => p.Supplier)
+                .ThenInclude(s => s.Concat).ThenInclude(c => c.Location)
+                .First(p => p.Id == id);
         }
 
         public void UpadteProduct(Product changeProduct, Product originalProduct = null)

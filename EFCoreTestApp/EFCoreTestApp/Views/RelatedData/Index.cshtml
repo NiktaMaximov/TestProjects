@@ -1,0 +1,22 @@
+﻿@model IEnumerable<EFCoreTestApp.Models.Supplier>
+@{
+    ViewBag.Title = "Supplier";
+    Layout = "_Layout";
+}
+<table class="table table-striped table-sm">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>State</th>
+    </tr>
+    @foreach(var s in Model.OrderBy(a => a.ID))
+    {
+        <tr>
+            <td>@s.ID</td>
+            <td>@s.Name</td>
+            <td>@s.City</td>
+            <td>@s.State</td>
+        </tr>
+    }
+</table>
