@@ -1,7 +1,9 @@
 ﻿using EFCoreTestApp.Dal;
+using EFCoreTestApp.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace EFCoreTestApp.Models.Interfaces
+namespace EFCoreTestApp.Models
 {
     public class SupplierRepository : ISupplierRepository
     {
@@ -20,7 +22,7 @@ namespace EFCoreTestApp.Models.Interfaces
 
         public void Delete(long id)
         {
-            _context.Remove(this.Get(id));
+            _context.Remove(Get(id));
             _context.SaveChanges();
         }
 
@@ -31,7 +33,7 @@ namespace EFCoreTestApp.Models.Interfaces
 
         public IEnumerable<Supplier> GetAll()
         {
-            return _context.Suppliers;
+            return _context.Suppliers.Include(s => s.Products);
         }
 
         public void Update(Supplier changeDataObject)

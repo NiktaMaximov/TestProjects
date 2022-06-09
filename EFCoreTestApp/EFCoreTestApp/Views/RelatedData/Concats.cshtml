@@ -1,0 +1,19 @@
+﻿@model IEnumerable<EFCoreTestApp.Models.ConcatDetails>
+@{
+    ViewBag.Title = "ConcatDetails";
+    Layout = "_Layout";
+}
+
+<tabel class="table table-striped table-sm">
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+    </tr>
+    @foreach(var s in Model)
+    {
+        <tr>
+            <td>@s.Name</td>
+            <td>@s.Phone</td>
+        </tr>
+    }
+</tabel>
