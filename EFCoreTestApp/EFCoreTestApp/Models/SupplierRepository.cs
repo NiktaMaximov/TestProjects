@@ -2,6 +2,7 @@
 using EFCoreTestApp.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EFCoreTestApp.Models
 {
@@ -33,7 +34,23 @@ namespace EFCoreTestApp.Models
 
         public IEnumerable<Supplier> GetAll()
         {
-            return _context.Suppliers.Include(s => s.Products);
+            // Явная зргузка
+            //IEnumerable<Supplier> data = _context.Suppliers.ToArray();
+
+            //foreach (var item in data)
+            //{
+            //    _context.Entry(item).Collection(e => e.Products)
+            //        .Query()
+            //        .Where(p => p.Price > 5)
+            //        .Load();
+            //}
+            //return data;
+
+            // Исправление
+            //_context.Products.Where(p => p.Supplier != null && p.Price > 5).Load();
+            //return _context.Suppliers;
+
+            return _context.Suppliers.Include(p => p.Products);
         }
 
         public void Update(Supplier changeDataObject)
