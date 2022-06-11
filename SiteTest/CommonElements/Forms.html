@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Формы</title>
+    <meta charset='utf-8'>
+</head>
+
+<body>
+    <font face="Times New Roman" size="6" color="blue">Формы</font>
+    <form autocomplete="on">
+        <p><label>Поле ввода текста</label></p>
+        <input type="text" placeholder="Введите текст" list="myList">
+        <p><label>Поле ввода пароля</label></p>
+        <input type="password" placeholder="Введите пароль">
+        <p>Поле checkbox</p>
+        <input type="checkbox" name="ch1" value="checkbox_1">Текст_1
+        <input type="checkbox" name="ch1" value="checkbox_2">Текст_2
+        <p>Поле radio button</p>
+        <input type="radio" name="rd1">Текст_1
+        <input type="radio" name="rd1">Текст_2
+        <p>Текстовая область</p>
+        <textarea placeholder="Введите текст" rows="3"></textarea>
+        <fieldset>
+            <legend>Список</legend>
+            <select multiple>
+                <optgroup label="Первая группа значений">
+                    <option value="var1">Значение_1</option>
+                    <option value="var2">Значение_2</option>
+                    <option value="var3">Значение_3</option>
+                </optgroup>
+                <optgroup label="Вторая группа значений">
+                    <option value="var1">Значение_4</option>
+                    <option value="var2">Значение_5</option>
+                    <option value="var3">Значение_6</option>
+                </optgroup>
+            </select>
+        </fieldset>
+        
+        <p><input type="reset" value="Сбросить данные"></p>
+    </form>
+
+    <datalist id="myList">
+        <option>Значение_1</option>
+        <option>Значение_2</option>
+        <option>Значение_3</option>
+        <option>Значение_4</option>
+    </datalist>
+</body>
+
+</html>
