@@ -34,7 +34,7 @@ namespace EFCoreTestApp.Models
 
         public IEnumerable<Supplier> GetAll()
         {
-            // Явная зргузка
+            // Явная заргузка
             //IEnumerable<Supplier> data = _context.Suppliers.ToArray();
 
             //foreach (var item in data)

@@ -1,0 +1,40 @@
+﻿@model Supplier;
+@{
+    int count = 0;
+}
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="Name" />
+    <input type="hidden" asp-for="City" />
+    <input type="hidden" asp-for="State" />
+
+    @foreach (var p in Model.Products)
+    {
+        <div class="row">
+            <input type="hidden" name="Products[@count].ID" value="@p.Id" />
+
+            <div class="col">
+                <input name="Products[@count].Name" value="@p.Name" class="form-control" />
+            </div>
+
+            <div class="col">
+                <input name="Products[@count].Category" value="@p.Category" class="form-control" />
+            </div>
+
+            <div class="col">
+                <input name="Products[@count].Price" value="@p.Price" class="form-control" />
+            </div>
+
+            @{count++;}
+
+        </div>
+    }
+
+    <div class="row">
+        <div class="col text-center m-1">
+            <button class="btn btn-sm btn-danger" type="submit">Save</button>
+            <a class="btn btn-sm btn-secondary" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+</form>

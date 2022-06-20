@@ -6,5 +6,6 @@
         public string Name { get; set; }
         public string Phone { get; set; }
         public ConcatLocation Location { get; set; }
+        public Supplier Supplier { get; set; }
     }
 }
