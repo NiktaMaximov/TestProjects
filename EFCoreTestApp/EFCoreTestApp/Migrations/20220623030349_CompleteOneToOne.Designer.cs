@@ -4,14 +4,16 @@ using EFCoreTestApp.Dal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCoreTestApp.Migrations
 {
     [DbContext(typeof(EFDatabaseContext))]
-    partial class EFDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220623030349_CompleteOneToOne")]
+    partial class CompleteOneToOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,7 @@ namespace EFCoreTestApp.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("SupplierId")
+                    b.Property<long>("SupplierId")
                         .HasColumnType("bigint");
 
                     b.HasKey("ID");
@@ -43,8 +45,7 @@ namespace EFCoreTestApp.Migrations
                     b.HasIndex("LocationID");
 
                     b.HasIndex("SupplierId")
-                        .IsUnique()
-                        .HasFilter("[SupplierId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("ConcatDetails");
                 });
@@ -128,7 +129,9 @@ namespace EFCoreTestApp.Migrations
 
                     b.HasOne("EFCoreTestApp.Models.Supplier", "Supplier")
                         .WithOne("Concat")
-                        .HasForeignKey("EFCoreTestApp.Models.ConcatDetails", "SupplierId");
+                        .HasForeignKey("EFCoreTestApp.Models.ConcatDetails", "SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Location");
 
