@@ -1,0 +1,38 @@
+p{
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-size: 15pt;
+    line-height: 5pt;
+}
+p.Base{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20pt;
+    color: blue;
+    text-indent: 25pt;
+    line-height: 30pt;
+    text-align: center;
+}
+p.Italic{
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+p.Oblique{
+    font-family: 'Times New Roman', Times, serif;
+    font-style: oblique;
+}
+p.Weight{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 900;
+}
+p.Text{
+    padding-left: 50pt;
+    font-family: 'Times New Roman', Times, serif;
+    word-spacing: 15pt;
+}
+p.Decoration{
+    margin-left: 50pt;
+    text-decoration: line-through;
+}
+p.Transform{
+    text-transform: capitalize;
+}

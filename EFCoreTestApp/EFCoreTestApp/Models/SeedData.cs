@@ -13,6 +13,7 @@ namespace EFCoreTestApp.Models
                 if (dbContext is EFDatabaseContext prodCtx && prodCtx.Products.Count() == 0)
                 {
                     prodCtx.Products.AddRange(Products);
+                    prodCtx.Set<Shipment>().AddRange(Shipments);
                 }
                 else if (dbContext is EFCustomerContext custCtx && custCtx.Customers.Count() == 0)
                 {
@@ -31,6 +32,7 @@ namespace EFCoreTestApp.Models
             if (dbContext is EFDatabaseContext prodCtx && prodCtx.Products.Count() > 0)
             {
                 prodCtx.Products.RemoveRange(prodCtx.Products);
+                prodCtx.Set<Shipment>().RemoveRange(Shipments);
             }
             else if (dbContext is EFCustomerContext custCtx && custCtx.Customers.Count() > 0)
             {
@@ -38,6 +40,18 @@ namespace EFCoreTestApp.Models
             }
 
             dbContext.SaveChanges();
+        }
+
+        public static Shipment[] Shipments
+        {
+            get
+            {
+                return new Shipment[]{
+                    new Shipment {ShipperName = "ShipperName_1", StartCity = "StartCity_1", EndCity = "EndCity_1"},
+                    new Shipment {ShipperName = "ShipperName_2", StartCity = "StartCity_2", EndCity = "EndCity_2"},
+                    new Shipment {ShipperName = "ShipperName_3", StartCity = "StartCity_3", EndCity = "EndCity_3"},
+                };
+            }
         }
 
         private static Product[] Products
