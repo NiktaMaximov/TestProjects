@@ -1,0 +1,27 @@
+p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15pt;
+}
+p.warning{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25pt;
+    color: brown;
+}
+p.base{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20pt;
+    color: blue;
+    text-indent: 25pt;
+    line-height: 30pt;
+    text-align: center;
+}
+div.red{
+    border-style: solid;
+    border-color: red;
+    cursor: crosshair;
+}
+div.blue{
+    border: solid blue;
+    cursor: crosshair;
+    float: right;
+}
